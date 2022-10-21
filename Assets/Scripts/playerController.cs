@@ -50,9 +50,10 @@ public class playerController : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.tag == "enemy") {
+        if (col.gameObject.tag == "Enemy") {
             lives -= 1;
             Destroy(this.gameObject);
+            Debug.Log("dead");
             // death particle/animations
             // wait for seconds or for key press
             // respawn method?

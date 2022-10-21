@@ -5,11 +5,14 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject[] enemies;
+    public enemyController[] enemy;
     public float minX;
     public float maxX;
 
     public float spawnTime = 3.0f;
-    public float elapsedTime = 0.0f;
+    public float spawnElapsedTime = 0.0f;
+    public float diffElapsedTime = 0.0f;
+    public float difficultyTime = 15.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +24,16 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         // increment elapsed time by every second
-        elapsedTime += Time.deltaTime;
+        spawnElapsedTime += Time.deltaTime;
+        diffElapsedTime += Time.deltaTime;
 
-        if (elapsedTime >= spawnTime) {
+        if (spawnElapsedTime >= spawnTime) {
             spawnIt();
-            elapsedTime = 0.0f;
+            spawnElapsedTime = 0.0f;
+        }
+        if (diffElapsedTime >= difficultyTime) {
+            Difficulty();
+            diffElapsedTime = 0;
         }
     }
 
@@ -40,5 +48,9 @@ public class Spawner : MonoBehaviour
 
         // randomize the next spawn time
         spawnTime = Random.Range(1,4);
+    }
+
+    public void Difficulty() {
+        //enemy[0].health *= 2;
     }
 }

@@ -39,5 +39,8 @@ public class enemyController : MonoBehaviour
             health -= pscript.damage;
             Destroy(col.gameObject);
         }
+        if (col.gameObject) {
+
+        }
     }
 }
